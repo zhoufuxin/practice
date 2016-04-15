@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>wave</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+  }
+
+  .circle {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 3px solid #000; 
+    overflow: hidden;
+    position: relative;
+  }
+
+  .circle .data {
+    position: absolute;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #dd5145;
+    text-align: center;
+    line-height: 100px;
+  }
+
+  @keyframes wave {
+    from {left: -50%;}
+    to   {left: 0%;}
+  }
+
+  .wave {
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    width: 150%;
+  }
+
+  .wave1 {
+    position: absolute;
+    top: -10%;
+    height: 100%;
+    width: 200%;
+
+    animation: wave 3s linear infinite;
+  }
+
+  .wave1 div {
+    display: inline-block;
+    height: 110%;
+    width: 25%;
+    margin-left: -12.5%;
+    background-color: #3a98ff;
+    border-top: 1px solid transparent;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+  }
+
+  .wave2 {
+    position: absolute;
+    top: -7%;
+    height: 100%;
+    width: 200%;
+
+    animation: wave 2.5s linear infinite;
+  }
+
+  .wave2 div {
+    display: inline-block;
+    height: 110%;
+    width: 25%;
+    margin-left: -12.5%;
+    background-color: #57c2f9;
+    border-top: 1px solid transparent;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+  }
+
+  </style>
+</head>
+<body>
+  <div id="circle" class="circle">
+    <div id="data" class="data">50%</div>
+
+    <div id="wave" class="wave">
+      <div class="wave1">
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <div class="wave2">
+        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script>
+window.onload = function() {
+
+  var circle  = document.getElementById("circle");
+  var data    = document.getElementById("data");
+  var wave    = document.getElementById("wave");
+  var percent = parseInt(data.innerHTML);
+
+  circle.onmousewheel = function(e) {
+    if (e.wheelDeltaY > 0) {
+      percent += 1;
+    } else {
+      percent -= 1;
+    }
+
+    if (percent > 100) { percent = 100; }
+    if (percent < 0)   { percent = 0; }
+
+    data.innerHTML = percent + "%";
+    wave.style.top = 100-percent + "%";
+  }
+}
+</script>
+</html>
