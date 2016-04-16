@@ -243,9 +243,20 @@ window.onload = function() {
     e = eventUtil.getEvent(e);
     var currY = e.clientY;
     var offsetY = currY - prevY;
-    //var value = prevScrollTop + e.movementY;
-      main.scrollTop += main.scrollHeight * e.movementY / main.offsetHeight;
-      scroll.style.top = (main.scrollTop / main.scrollHeight) * 100 +"%";
+    var value = prevScrollTop + main.scrollHeight * offsetY / main.offsetHeight;
+    
+    if ( value <= 0 ) {
+      main.scrollTop = 0;
+    } else if ( value >= (main.scrollHeight-main.offsetHeight) ) {
+      main.scrollTop = main.scrollHeight-main.offsetHeight;
+    } else {
+      main.scrollTop = value;
+      eventUtil.stopPropagation(e);
+      eventUtil.preventDefault(e);
+    }
+
+    //main.scrollTop += main.scrollHeight * e.movementY / main.offsetHeight;
+    scroll.style.top = (main.scrollTop / main.scrollHeight) * 100 +"%";
   }
 
   scroll.style.height = (main.offsetHeight / main.scrollHeight) * 100 +"%";
