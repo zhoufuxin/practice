@@ -11,6 +11,12 @@
     box-sizing: border-box;
   }
 
+  div {
+       -moz-user-select:none;
+    -webkit-user-select:none;
+            user-select:none; 
+  }
+
   .clearfix:before, .clearfix:after {
     display: table;
     content: "";
@@ -63,6 +69,22 @@
   </style>
 </head>
 <body>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
   <div class="teacher-show clearfix">
     <div id="main" class="main">
       <div id="teacher-content" class="content">
@@ -139,30 +161,173 @@
       <div id="scroll-current" class="scroll-current"></div>
     </div>
   </div>
-  <script type="text/javascript">
-  (function(document){
-    var main = document.getElementById("main");
-    var scroll = document.getElementById("scroll-current");
+  
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+  <p>1</p>
+<script type="text/javascript">
+window.onload = function() {
+  var main = document.getElementById("main");
+  var scroll = document.getElementById("scroll-current");
 
-    main.onmousewheel = function(e) {
-      e = e || window.event;
-      var value = this.scrollTop;
+  eventUtil.addHandler(main, "mousewheel", function(e) {
+    e = eventUtil.getEvent(e);
+    var value = this.scrollTop;
 
-      value -= e.wheelDeltaY;
-      
-      if ( value <= 0 ) {
-        this.scrollTop = 0;
-      } else if ( value >= (this.scrollHeight-this.offsetHeight) ) {
-        this.scrollTop = this.scrollHeight-this.offsetHeight;
+    if (e.wheelDelta && e.wheelDelta < 0 
+      || e.detail && e.detail > 0) {
+      value += 120;
+    } else if (e.wheelDelta && e.wheelDelta > 0 
+      || e.detail && e.detail < 0) {
+      value -= 120;
+    }
+    
+    if ( value <= 0 ) {
+      this.scrollTop = 0;
+    } else if ( value >= (this.scrollHeight-this.offsetHeight) ) {
+      this.scrollTop = this.scrollHeight-this.offsetHeight;
+    } else {
+      this.scrollTop = value;
+      eventUtil.stopPropagation(e);
+      eventUtil.preventDefault(e);
+    }
+
+    scroll.style.top = (this.scrollTop / this.scrollHeight) * 100 +"%";
+  });
+
+  var prevY = 0;
+  var prevScrollTop = 0;
+
+  eventUtil.addHandler(scroll, "mousedown", function(e) {
+    e = eventUtil.getEvent(e);
+    prevY = e.clientY;
+    prevScrollTop = main.scrollTop;
+    eventUtil.addHandler(document, "mousemove", scrollMouseHandler);
+
+    //main.scrollTop += 10;
+    //scroll.style.top = (main.scrollTop / main.scrollHeight) * 100 +"%";
+  });
+
+  eventUtil.addHandler(document, "mouseup", function(e) {
+    eventUtil.removeHandler(document, "mousemove", scrollMouseHandler);
+  });
+
+  function scrollMouseHandler(e) {
+    e = eventUtil.getEvent(e);
+    var currY = e.clientY;
+    var offsetY = currY - prevY;
+    //var value = prevScrollTop + e.movementY;
+      main.scrollTop += main.scrollHeight * e.movementY / main.offsetHeight;
+      scroll.style.top = (main.scrollTop / main.scrollHeight) * 100 +"%";
+  }
+
+  scroll.style.height = (main.offsetHeight / main.scrollHeight) * 100 +"%";
+};
+
+var eventUtil = {
+  addHandler : function(element, type, handler) {
+    if (type == "input") {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+      } else if (element.attachEvent) {
+        element.attachEvent('onpropertychange', handler);
       } else {
-        this.scrollTop = value;
+        element['onpropertychange'] = handler;
       }
-
-      scroll.style.top = (this.scrollTop / this.scrollHeight) * 100 +"%";
-    };
-
-    scroll.style.height = (main.offsetHeight / main.scrollHeight) * 100 +"%";
-  })(document);
-  </script>
+      return;
+    } else if (type == "mousewheel") {
+      if (element.onmousewheel === undefined) {
+        element.addEventListener("DOMMouseScroll", handler, false);
+      } else {
+        element["onmousewheel"] = handler;
+      }
+    } else {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+      } else if (element.attachEvent) {
+        element.attachEvent('on' + type, handler);
+      } else {
+        element['on' + type] = handler;
+      }
+    }
+  },
+  removeHandler : function(element, type, handler) {
+    if (type == "input") {
+      if (element.removeEventListener) {
+        element.removeEventListener(type, handler, false);
+      } else if (element.detachEvent) {
+        element.detachEvent('onpropertychange', handler);
+      } else {
+        element['onpropertychange'] = null;
+      }
+      return;
+    } else if (type == "mousewheel") {
+      if (element.onmousewheel === undefined) {
+        element.removeEventListener("DOMMouseScroll", handler, false);
+      } else {
+        element["onmousewheel"] = null;
+      }
+    } else {
+      if (element.removeEventListener) {
+        element.removeEventListener(type, handler, false);
+      } else if (element.detachEvent) {
+        element.detachEvent('on' + type, handler);
+      } else {
+        element['on' + type] = null;
+      }
+    }
+  },
+  getEvent : function(event) {
+    return event ? event : window.event;
+  },
+  getType : function(event) {
+    return event.type;
+  },
+  getElement : function(event) {
+    return event.target || event.srcElement;
+  },
+  stopPropagation : function(event) {
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    } else {
+      event.cancelBubble = true;
+    }
+  },
+  preventDefault : function(event) {
+    if (event.preventDefault) {
+      event.preventDefault();
+    } else {
+      event.returnValue = false;
+    }
+  }
+};
+</script>
 </body>
 </html>

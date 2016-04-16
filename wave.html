@@ -50,7 +50,8 @@
     height: 100%;
     width: 200%;
 
-    animation: wave 3s linear infinite;
+            animation: wave 3s linear infinite;
+    -webkit-animation: wave 3s linear infinite;
   }
 
   .wave1 div {
@@ -70,7 +71,8 @@
     height: 100%;
     width: 200%;
 
-    animation: wave 2.5s linear infinite;
+            animation: wave 2.5s linear infinite;
+    -webkit-animation: wave 2.5s linear infinite;
   }
 
   .wave2 div {
@@ -109,8 +111,9 @@ window.onload = function() {
   var wave    = document.getElementById("wave");
   var percent = parseInt(data.innerHTML);
 
-  circle.onmousewheel = function(e) {
-    if (e.wheelDeltaY > 0) {
+  eventUtil.addHandler(circle, "mousewheel", function(e) {
+    e = eventUtil.getEvent(e);
+    if (e.wheelDelta && e.wheelDelta > 0 || e.detail && e.detail < 0) {
       percent += 1;
     } else {
       percent -= 1;
@@ -121,7 +124,88 @@ window.onload = function() {
 
     data.innerHTML = percent + "%";
     wave.style.top = 100-percent + "%";
-  }
+
+    eventUtil.stopPropagation(e);
+    eventUtil.preventDefault(e);
+  });
 }
+
+var eventUtil = {
+  addHandler : function(element, type, handler) {
+    if (type == "input") {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+      } else if (element.attachEvent) {
+        element.attachEvent('onpropertychange', handler);
+      } else {
+        element['onpropertychange'] = handler;
+      }
+      return;
+    } else if (type == "mousewheel") {
+      if (element.onmousewheel === undefined) {
+        element.addEventListener("DOMMouseScroll", handler, false);
+      } else {
+        element["onmousewheel"] = handler;
+      }
+    } else {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+      } else if (element.attachEvent) {
+        element.attachEvent('on' + type, handler);
+      } else {
+        element['on' + type] = handler;
+      }
+    }
+  },
+  removeHandler : function(element, type, handler) {
+    if (type == "input") {
+      if (element.removeEventListener) {
+        element.removeEventListener(type, handler, false);
+      } else if (element.detachEvent) {
+        element.detachEvent('onpropertychange', handler);
+      } else {
+        element['onpropertychange'] = null;
+      }
+      return;
+    } else if (type == "mousewheel") {
+      if (element.onmousewheel === undefined) {
+        element.removeEventListener("DOMMouseScroll", handler, false);
+      } else {
+        element["onmousewheel"] = null;
+      }
+    } else {
+      if (element.removeEventListener) {
+        element.removeEventListener(type, handler, false);
+      } else if (element.detachEvent) {
+        element.detachEvent('on' + type, handler);
+      } else {
+        element['on' + type] = null;
+      }
+    }
+  },
+  getEvent : function(event) {
+    return event ? event : window.event;
+  },
+  getType : function(event) {
+    return event.type;
+  },
+  getElement : function(event) {
+    return event.target || event.srcElement;
+  },
+  stopPropagation : function(event) {
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    } else {
+      event.cancelBubble = true;
+    }
+  },
+  preventDefault : function(event) {
+    if (event.preventDefault) {
+      event.preventDefault();
+    } else {
+      event.returnValue = false;
+    }
+  }
+};
 </script>
 </html>
