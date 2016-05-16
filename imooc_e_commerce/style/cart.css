@@ -1,0 +1,320 @@
+@charset "utf-8";
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input,button,a,div,i,select,b,option,label,span{margin:0;padding:0;box-sizing:border-box;-webkit-box-sizing:border-box;}
+body{font-size:12px;}
+img{border:none;}
+li{list-style:none;}
+input,select,textarea,button{outline:none;border:none; background:none;cursor: pointer;}
+textarea{resize:none;}
+a{text-decoration:none; color:#656565;}
+
+.fl{float:left;}
+.fr{float:right;}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+  content: '';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+  overflow: hidden;
+}
+
+
+.header,
+.footer {
+    width: 100%;
+}
+
+.auto-center,
+.wrap {
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+/* 顶部收藏登录注册 */
+.header .top {
+    height: 31px;
+    line-height: 31px;
+    color: #666;
+    background: #f7f7f7;
+}
+
+.collection {
+    float: left;
+    height: 100%;
+    padding: 1px 0 0 18px;
+    background: url("../images/collection.png") no-repeat left center;
+}
+
+.welcome {
+    float: right;
+    margin-right: 17px;
+    display: inline;
+}
+
+/* logo搜索与购物进度 */
+.header .middle {
+    height: 85px;
+    background-color: #1d7ad9;    
+}
+
+.logo {
+    margin: 13px 38px;
+    width: 115px;
+    height: 59px;
+}
+
+.logo a img {
+    width: 100%;
+}
+
+.shopping-cart {
+    margin: 10px 0;
+}
+
+/* 订单主体 */
+.cart-item {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-family: "微软雅黑";
+}
+
+.cart-item .item-title {
+    padding-left: 10px;
+    height: 32px;
+    border-bottom: 1px solid #e3e3e3;
+    font: 18px/31px "宋体";
+    color: #444;
+    background-color: #f3f3f3;
+}
+
+.cart-item select,
+.cart-item button,
+.cart-item input {
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    height: 20px;
+}
+
+.cart-item button {
+    margin: 0 5px;
+    padding: 0 20px;
+    border: none;
+    background: url(../images/blue_bg.png) repeat-x;
+    height: 27px;
+    color: #fff;
+}
+
+.cart-item .cancel-button {
+    border: 1px solid #ccc;
+    background: #f6f6f6;
+    color: #000;
+}
+
+.cart-item dd {
+    padding: 10px 0 10px 30px;
+}
+
+.must-input {
+    margin: 10px 0;
+}
+
+.must-input i {
+    padding-right: 5px;
+    font-style: normal;
+    color: red;
+}
+
+.choose-item {
+    margin: 5px 0 20px;
+}
+
+.choose-item input {
+    margin-right: 5px;
+    vertical-align: middle;
+    border: none;
+}
+
+.choose-item label {
+    margin-right: 20px;
+}
+
+.wechat {
+    display: inline-block;
+    vertical-align: middle;
+    width: 26px;
+    height: 20px;
+    background: url(../images/wechat.png) no-repeat;
+}
+
+/* 送货清单 */
+.cart-item .cart-detail {
+    padding: 0;
+}
+
+.cart-back {
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+.blue-font {
+    color: #3377ff;
+}
+
+.cart-detail ul {
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-detail ul li {
+    float: left;
+    margin-left: 20px;
+}
+
+.goods-name {
+    width: 45%;
+    *width: 44%;
+}
+
+.goods-price {
+    width: 11%;
+}
+
+.goods-back {
+    width: 11%;
+}
+
+.goods-num {
+    width: 11%;
+}
+
+.goods-total {
+    width: 11%;
+}
+
+.detail-title {
+    margin-top: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.detail-item {
+    padding-top: 10px;
+    height: 100px;
+}
+
+.goods-name .title img {
+    width: 80px;
+    height: 80px;
+}
+
+.main-goods {
+    height: 55px;
+}
+
+.detail-item .goods-total {
+    color: #d70000;
+    font-weight: bold;
+}
+
+/* 不能购买的商品 */
+.fail-goods .warning {
+    margin-bottom: 20px; 
+    padding-left: 25px;
+    background: url(../images/warning.png) no-repeat left center;
+    color: #e00;
+}
+
+.fail-item img {
+    width: 80px;
+    height: 80px;
+}
+
+.fail-item dd {
+    margin-left: 10px; 
+    padding: 0;
+    line-height: 22px;
+    color: #666;
+}
+
+.fail-item h2 {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.red-bold {
+    color: #e00;
+    font-weight: bold;
+}
+
+.cart-total {
+    float: right;
+    *display: inline;
+    margin: 33px 25px 28px 0;
+    color: #929292;
+    font-size: 16px;
+}
+
+.cart-total .price {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 32px;
+    font-weight: normal;
+}
+
+.cart-total .submit {
+    margin-top: 15px;
+    padding: 0 55px;
+    border: none;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #e00;
+}
+
+/* 页面底部 */
+.footer {
+    margin-top: 20px;
+    background-color: #d4d4d4;
+    overflow: hidden;
+}
+
+.footer .nav {
+    padding-top: 48px;
+}
+
+.footer .nav,
+.footer .info,
+.footer .credit {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.footer .nav a {
+    display: inline-block;
+    border-left: 1px solid #000;
+    color: #000;
+    text-align: center;
+    padding-left: 6px;
+
+}
+
+.footer .nav a:first-child {
+    border-left: none;
+}
+
+.footer .credit {
+    margin: 27px 0 46px;
+}
+
+.footer .credit img {
+    margin: 0 12px;
+    width: 128px;
+}

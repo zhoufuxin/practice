@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商城网站静态页面</title>
+    <link rel="stylesheet" href="./style/cart.css">
+</head>
+<body>
+    <div class="header">
+        <div class="top">
+            <div class="auto-center clearfix">
+                <a href="#" class="collection">收藏慕课</a>
+                <div class="welcome">欢迎来到慕课网！<a href="#" class="login">[登录]</a><a href="#" class="signin">[免费注册]</a></div>
+            </div>
+        </div><!--顶部收藏登录注册结束-->
+        <div class="middle">
+            <div class="auto-center clearfix">
+                <a href="#" class="logo fl"><img src="./images/logo.png" alt="慕课网" title="慕课网首页"></a>
+                <div class="shopping-cart fr">
+                    <img src="./images/shopping_progress.png" alt="">
+                </div>
+            </div>
+        </div><!--搜索与购物车结束-->
+    </div><!--页面头部结束-->
+
+    <div class="wrap">
+      <form action="">
+        <dl class="cart-item">
+          <dt class="item-title">收货地址</dt>
+          <dd>
+            <div class="must-input"><i>*</i><span class="">选择地区：</span><select name="" id="" class="" style="width: 160px;"><option value="1">北京市 海淀区 五环内</option></select></div>
+            <div class="must-input"><i>*</i><span class="">详细地址：</span><input style="width: 395px;" type="text" placeholder="最多输入26个汉字"></div>
+            <div class="must-input"><i>*</i><span class="">收货人：</span><input style="width: 110px;" type="text" placeholder="最多10个汉字"></div>
+            <div class="must-input"><i>*</i><span class="">手机：</span><input style="width: 110px;" type="text" placeholder="如13766666666"><span>或固定电话：</span><input style="width: 65px;" type="text" placeholder="区号">-<input style="width: 100px;" type="text" placeholder="电话号码">-<input style="width: 100px;" type="text" placeholder="分机号（可选）"></div>
+            <div><button>确认收货地址</button></div>
+          </dd>
+        </dl>
+        <dl class="cart-item">
+          <dt class="item-title">支付方式</dt>
+          <dd>
+            <div class="choose-item"><input id="wechatchoose" name="payment-mode" type="radio"><label for="wechatchoose">微信支付</label><i class="wechat"></i>用微信扫一下就能支付</div>
+            <div class="choose-item"><input id="cashchoose" name="payment-mode" type="radio"><label for="cashchoose">现金支付</label>送货上门后再付款，使用现金或刷银行卡</div>
+          </dd>
+        </dl>
+        <dl class="cart-item">
+          <dt class="item-title">发票信息</dt>
+          <dd>
+            <div class="choose-item"><input id="invoice" type="checkbox"><label for="invoice">需要发票</label></div>
+            <div class="must-input"><i>*</i><span class="">发票类型：</span><select style="width: 110px;" name="" id="" class=""><option value="1">商业零售发票</option></select></div>
+            <div class="must-input"><i>*</i><span class="">发票抬头：</span><select style="width: 60px;" name="" id="" class=""><option value="1">个人</option></select><input style="margin-left: 5px; width: 140px;" type="text"></div>
+            <div><button>保存</button><button class="cancel-button">取消</button></div>
+          </dd>
+        </dl>
+        <dl class="cart-item">
+          <dt class="item-title">送货清单</dt>
+          <dd class="cart-back"><a href="#" class="blue-font">返回购物车修改</a></dd>
+          <dd class="cart-detail">
+            <ul class="detail-title clearfix">
+              <li class="goods-name">商品名称</li>
+              <li class="goods-price">单价</li>
+              <li class="goods-back">返现</li>
+              <li class="goods-num">数量</li>
+              <li class="goods-total">小计</li>
+            </ul>
+            <ul class="detail-item clearfix">
+              <li class="goods-name clearfix">
+                <div class="fl"><a href="#" class="title"><img src="./images/cart1.png" alt=""></a></div>
+                <div class="fl">
+                  <p class="main-goods"><a href="#">xxx 冰箱 xxxx (银色)</a></p>
+                  <p class="other-goods"><a href="#">[赠品]保鲜盒 抽真空保鲜盒</a></p>
+                </div>
+              </li>
+              <li class="goods-price">¥1459.00</li>
+              <li class="goods-back">¥00.00</li>
+              <li class="goods-num">
+                <p class="main-goods">1</p>
+                <p class="other-goods">1</p>
+              </li>
+              <li class="goods-total">¥1459.00</li>
+            </ul>
+          </dd>
+          <dd><a href="#" class="blue-font">若您对包装有特殊要求，请在此留言</a></dd>
+          <dd class="fail-goods">
+            <p class="warning">抱歉，以下商品暂时不能购买：)</p>
+            <dl class="fail-item clearfix">
+               <dt class="fl"><img src="./images/cart2.png" alt=""></dt> 
+               <dd class="fl">
+                   <h2 class="title">清风 欧院系列 清香型 100抽3层XXXXX</h2>
+                   <p class="count">数量：1件</p>
+                   <p class="price">¥4.90<span class="red-bold">(无货)</span></p>
+               </dd>
+            </dl>
+          </dd>
+        </dl>
+        <dl class="cart-item">
+          <dt class="item-title">订单结算</dt>
+          <dd class="clearfix">
+            <div class="cart-total">
+              <p>总计<span class="price red-bold">¥1459.00</span></p>
+              <input class="submit" type="submit" value="提交订单">
+            </div>
+          </dd>
+        </dl>
+      </form>
+    </div><!--主体部分-->
+
+    <div class="footer">
+        <div class="auto-center">
+           <div class="nav">
+               <a href="#">慕课简介</a>
+               <a href="#">慕课公告</a>
+               <a href="#">招贤纳士</a>
+               <a href="#">联系我们</a>
+               <a href="#">客服热线：400-675-1234</a>
+           </div>
+           <p class="info">Copyright&nbsp;&copy;&nbsp;2006&nbsp;-&nbsp;2014&nbsp;慕课版权所有&nbsp;&nbsp;&nbsp;京ICP备09037834号&nbsp;&nbsp;&nbsp;   京ICP证B1034-8373号&nbsp;&nbsp;&nbsp;某市公安局XX分局备案编号：123456789123</p>
+           <div class="credit">
+               <img src="./images/credit.png" alt="信誉证书" />
+               <img src="./images/credit.png" alt="信誉证书" />
+               <img src="./images/credit.png" alt="信誉证书" />
+               <img src="./images/credit.png" alt="信誉证书" />
+           </div> 
+        </div>
+    </div><!--页面底部结束-->
+</body>
+</html>
